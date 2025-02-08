@@ -25,3 +25,8 @@ baseUrl 將由面試官提供。
 ## 額外內容
 
 1. 請將您的專案透過自動化構建方式部屬 如(cloudflare pages、github pages、netlify、vercel 等)
+
+
+## 其他
+
+範本: https://exam.wuc.us.kg/
