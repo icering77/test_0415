@@ -21,6 +21,8 @@ baseUrl 將由面試官提供。
 ## 注意事項
 
 1. `App.vue` template 內容不可修改
+2. 只允許使用 `Composition API` 寫法
+3. 盡可能使用 typescript 寫法
 
 ## 額外內容
 
@@ -29,4 +31,4 @@ baseUrl 將由面試官提供。
 
 ## 其他
 
-範本: https://exam.wuc.us.kg/
+範本: [https://exam.wuchieh.tk/](https://exam.wuchieh.tk/)
