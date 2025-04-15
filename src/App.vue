@@ -89,12 +89,27 @@ const create = () => {
     const alertText = '確定新增' + formDate.value.name + '(' + formDate.value.age + ') 嗎?'
     const result = confirm(alertText)
     if (result) {
-      const userId = users.value[(users.value.length-1)].id + 1
-
-      users.value.push({
-        id: userId,
-        name: formDate.value.name,
-        age: formDate.value.age
+      axios({
+        method: 'post',
+        url: baseUrl + '/api/user',
+        data: {
+          name: formDate.value.name,
+          age: Number(formDate.value.age)
+        }
+      }).then(res => {
+        if(res.data.message === 'success') {
+          const userId = res.data.data.id
+          users.value.push({
+            id: userId,
+            name: formDate.value.name,
+            age: formDate.value.age
+          })
+        }
+        
+       
+        
+      }).catch(err => {
+        console.log(err)
       })
 
     } else {
@@ -108,9 +123,25 @@ const edit = () => {
   const alertText = '確定修改' + formDate.value.name + '(' + formDate.value.age + ') 嗎?'
   const result = confirm(alertText)
   if (result) {
-    const userIndex = users.value.findIndex(item => item.id === formDate.value.id)
-    users.value[userIndex].name = formDate.value.name
-    users.value[userIndex].age = formDate.value.age
+
+    axios({
+      method: 'put',
+      url: baseUrl + '/api/user',
+      data: {
+        id: formDate.value.id,
+        name: formDate.value.name,
+        age: Number(formDate.value.age)
+      }
+    }).then(res => {
+      if(res.data.message === 'success') {
+        const userIndex = users.value.findIndex(item => item.id === formDate.value.id)
+        users.value[userIndex].name = formDate.value.name
+        users.value[userIndex].age = formDate.value.age
+      }
+     
+    }).catch(err => {
+      console.log(err)
+    })
     
 
   } else {
@@ -131,7 +162,20 @@ const remove = (user: User) => {
   const alertText = '確定刪除嗎?'
   const result = confirm(alertText)
   if (result) {
-    users.value = users.value.filter(item => item.id !== user.id)
+    axios({
+      method: 'delete',
+      url: baseUrl + '/api/user',
+      data: {
+        id: user.id,
+      }
+    }).then(res => {
+      if(res.data.message === 'success') {
+        users.value = users.value.filter(item => item.id !== user.id)
+      }
+
+    }).catch(err => {
+      console.log(err)
+    })
   } else {
   }
 }
