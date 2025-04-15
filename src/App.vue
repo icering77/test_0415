@@ -15,7 +15,6 @@
               class="mb-3"
               label="年齡"
               type="number"
-              value="formDate.age"
               v-model="formDate.age"/>
 
           <div class="d-flex gap-1">
